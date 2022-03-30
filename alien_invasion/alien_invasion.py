@@ -3,7 +3,7 @@
 import sys
 import pygame
 from settings import Settings
-from ship import Ship
+from  ship import Ship
 
 class AlienInvasion:
     "Master class to manage game play and assets"
@@ -35,19 +35,31 @@ class AlienInvasion:
             if event.type == pygame.QUIT:
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RIGHT:
-                    #move the ship towards right
-                    self.ship.moving_right=True
-                elif event.key == pygame.K_LEFT:
-                    #move the ship towards left
-                    self.ship.moving_left=True
+                self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_RIGHT:
-                    #stop moving the ship towards right
-                    self.ship.moving_right=False
-                elif event.key == pygame.K_LEFT:
-                    #stop moving the ship towards left
-                    self.ship.moving_left=False
+                self._check_keyup_events(event)
+
+
+    def _check_keydown_events(self, event):
+        """Helper method to respond to keydown events"""
+        if event.key == pygame.K_RIGHT:
+            #move the ship towards right
+            self.ship.moving_right=True
+        elif event.key == pygame.K_LEFT:
+            #move the ship towards left
+            self.ship.moving_left=True
+        elif event.key == pygame.K_q:
+            """Another way to exit the game if Q key is pressed"""
+            sys.exit()            
+
+    def _check_keyup_events(self, event):
+        """Helper method to respond to keyup events"""
+        if event.key == pygame.K_RIGHT:
+            #stop moving the ship towards right
+            self.ship.moving_right=False
+        elif event.key == pygame.K_LEFT:
+            #stop moving the ship towards left
+            self.ship.moving_left=False
 
     def _update_screen(self):
         """Helper method to update elements on the screen"""
