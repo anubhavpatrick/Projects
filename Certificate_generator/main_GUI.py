@@ -20,8 +20,10 @@ def main_GUI():
     input("Give the path of the template", placeholder= "certificate.png", name = "template_path", value = "certificate.png"),
     input("Give the path with the result file name of participants in xlsx format. The columns of result file must be SNo, Section, Class_Roll_Num, Name, Email", placeholder= "results.xlsx", name = "result_file", value = "results.xlsx"),
     radio("Do you want to create a zip archive", options=["Yes", "No"],name = "zip_require",value = "No"),
-    radio("Do you want to upload the zip archive to Google Drive", options=["Yes", "No"],upload_require = "Yes", name = "upload_require", value = "No")
-    ] )
+    radio("Do you want to upload the zip archive to Google Drive", options=["Yes", "No"], name = "upload_require", value = "No"),
+    radio("Do you want to also send the emails with attached certificate to the participants [Use with caution]", options=["Yes", "No"], name = "email_require", value = "No")
+    ] , cancelable=True
+    )
 
     try:
 
