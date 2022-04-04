@@ -3,42 +3,50 @@ Reference - https://www.geeksforgeeks.org/uploading-files-on-google-drive-using-
 '''
 from pydrive.drive import GoogleDrive
 from pydrive.auth import GoogleAuth
+from pywebio.output import put_text
 import pathlib
 
 # For using listdir()
 import os
 
 def upload_archive(archive_name):
-    # Below code does the authentication
-    # part of the code
-    gauth = GoogleAuth()
+    '''Upload the archive to Google Drive'''
 
-    # Creates local webserver and auto
-    # handles authentication.
-    gauth.LocalWebserverAuth()	
-    drive = GoogleDrive(gauth)
+    try:
+        # Below code does the authentication
+        # part of the code
+        gauth = GoogleAuth()
 
-    # replace the value of this variable
-    # with the absolute path of the directory
-    current_dir = os.getcwd()
-    f = drive.CreateFile({'title': archive_name})
-    f.SetContentFile(os.path.join(current_dir, archive_name))
-    f.Upload()
+        put_text("Authenticating...")
 
-    '''
-    # iterating thought all the files/folder
-    # of the desired directory
-    for x in os.listdir(path):
+        # Creates local webserver and auto
+        # handles authentication.
+        gauth.LocalWebserverAuth()	
+        drive = GoogleDrive(gauth)
 
-        f = drive.CreateFile({'title': x})
-        f.SetContentFile(os.path.join(path, x))
+        # replace the value of this variable
+        # with the absolute path of the directory
+        current_dir = os.getcwd()
+        f = drive.CreateFile({'title': archive_name})
+        f.SetContentFile(os.path.join(current_dir, archive_name))
         f.Upload()
 
-        # Due to a known bug in pydrive if we
-        # don't empty the variable used to
-        # upload the files to Google Drive the
-        # file stays open in memory and causes a
-        # memory leak, therefore preventing its
-        # deletion
-        f = None
-    '''
+        '''
+        # iterating thought all the files/folder
+        # of the desired directory
+        for x in os.listdir(path):
+
+            f = drive.CreateFile({'title': x})
+            f.SetContentFile(os.path.join(path, x))
+            f.Upload()
+
+            # Due to a known bug in pydrive if we
+            # don't empty the variable used to
+            # upload the files to Google Drive the
+            # file stays open in memory and causes a
+            # memory leak, therefore preventing its
+            # deletion
+            f = None
+        '''
+    except Exception as e:
+        put_text("Error: "+str(e))
