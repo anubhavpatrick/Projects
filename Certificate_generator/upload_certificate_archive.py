@@ -28,7 +28,7 @@ def upload_archive(archive_name):
         gauth.CommandLineAuth()
         drive = GoogleDrive(gauth)
 
-        put_text("- Successfully Authenticated...")
+        put_markdown("- Successfully Authenticated...")
 
         # replace the value of this variable
         # with the absolute path of the directory
