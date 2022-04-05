@@ -74,7 +74,11 @@ def generate_certificate(result_file, template_path, session, event_name:str):
             output_path = event_name_formatted+'/sec_' + section.lower() + '/'
 
             #adding event name directory to .gitignore
-            open('.gitignore', 'a').write('\n'+event_name_formatted + '/\n')
+            with open('.gitignore', 'r+') as f:
+                git_ignore_files = f.readlines()
+                if event_name_formatted+'/\n' not in git_ignore_files:
+                    f.write(event_name_formatted + '/\n')
+            #open('.gitignore', 'a').write('\n'+event_name_formatted + '/\n')
 
             get_roll_num = sheet.cell(row = i ,column = 3)
             roll_num = int(get_roll_num.value)

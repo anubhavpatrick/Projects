@@ -6,7 +6,7 @@ Reference - https://medium.com/analytics-vidhya/pydrive-to-download-from-google-
 '''
 from pydrive.drive import GoogleDrive
 from pydrive.auth import GoogleAuth
-from pywebio.output import put_text
+from pywebio.output import put_markdown
 import pathlib
 
 # For using listdir()
@@ -20,7 +20,7 @@ def upload_archive(archive_name):
         # part of the code
         gauth = GoogleAuth()
 
-        put_text("Authenticating...")
+        put_markdown("- Authenticating...")
 
         # Creates local webserver and auto
         # handles authentication.
@@ -28,7 +28,7 @@ def upload_archive(archive_name):
         gauth.CommandLineAuth()
         drive = GoogleDrive(gauth)
 
-        put_text("Successfully Authenticated...")
+        put_text("- Successfully Authenticated...")
 
         # replace the value of this variable
         # with the absolute path of the directory
@@ -38,6 +38,6 @@ def upload_archive(archive_name):
         f.Upload()
 
     except Exception as e:
-        put_text("Error: "+str(e))
+        put_markdown("## !!!Error: "+str(e))
 
 #upload_archive('codewiz_123_archive.zip')

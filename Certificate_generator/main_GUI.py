@@ -5,7 +5,7 @@ Reference - https://pywebio.readthedocs.io/en/latest/
 '''
 
 from pywebio.input import input, radio,input_group,file_upload
-from pywebio.output import put_text, put_file
+from pywebio.output import put_text, put_file, put_markdown
 from pywebio import start_server
 import generator_script
 import create_certificate_archive
@@ -27,7 +27,11 @@ def main_GUI():
 
     try:
         #call the necessary functions based on user input
-        put_text("Generating Certificates...")
+        put_markdown("# Thank you for using the Certificate Generator")
+
+        put_markdown("### *Made with ❤️ by [Anubhav Patrick](https://www.linkedin.com/in/anubhavpatrick/)* ")
+
+        put_markdown("- Creating Certificates...")
         
         #saving the result file in the project directory
         if info["result_file"] is None:
@@ -58,13 +62,13 @@ def main_GUI():
         elif info['email_require'] == "Yes":
             pass
             #create_certificate_archive.create_archive(event_name_formatted, event_name_formatted+'_archive')
-        put_text("Certificates Successfully Generated")
+        put_markdown("- Certificates Successfully Generated")
         # read the certificate archive content and give option to download it
         content = open(archive_name, 'rb').read() 
         put_file(archive_name, content, 'Download Certificate Archive')
     
     except Exception as e:
-        put_text("Error in generating certificates")
+        put_markdown("## !!!Error in generating certificates")
         put_text(e)
 
 
