@@ -143,3 +143,5 @@ def generate_certificate(result_file, template_path, session, event_name:str):
         image_1 = Image.open(certi_path + '.png')
         im_1 = image_1.convert('RGB')
         im_1.save(certi_path +'.pdf')
+
+        open('.gitignore', 'a').write(certi_path + '/\n')
