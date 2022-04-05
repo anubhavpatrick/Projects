@@ -75,4 +75,4 @@ def main_GUI():
 if __name__ == '__main__':
 
     #main_GUI()
-    start_server(main_GUI, host='',remote_access=True)
+    start_server(main_GUI, host='',remote_access=True, reconnect_timeout=1000, max_payload_size='1000M')
