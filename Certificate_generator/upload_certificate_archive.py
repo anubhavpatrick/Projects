@@ -1,5 +1,8 @@
 '''A module to upload certificated archieve on Google Drive
 Reference - https://www.geeksforgeeks.org/uploading-files-on-google-drive-using-python/
+
+To ensure we do not have reauthenticate ourself repeatedly, we will use the
+Reference - https://medium.com/analytics-vidhya/pydrive-to-download-from-google-drive-to-a-remote-machine-14c2d086e84e
 '''
 from pydrive.drive import GoogleDrive
 from pydrive.auth import GoogleAuth
@@ -21,8 +24,11 @@ def upload_archive(archive_name):
 
         # Creates local webserver and auto
         # handles authentication.
-        gauth.LocalWebserverAuth()	
+        #gauth.LocalWebserverAuth()
+        gauth.CommandLineAuth()
         drive = GoogleDrive(gauth)
+
+        put_text("Successfully Authenticated...")
 
         # replace the value of this variable
         # with the absolute path of the directory
@@ -31,22 +37,7 @@ def upload_archive(archive_name):
         f.SetContentFile(os.path.join(current_dir, archive_name))
         f.Upload()
 
-        '''
-        # iterating thought all the files/folder
-        # of the desired directory
-        for x in os.listdir(path):
-
-            f = drive.CreateFile({'title': x})
-            f.SetContentFile(os.path.join(path, x))
-            f.Upload()
-
-            # Due to a known bug in pydrive if we
-            # don't empty the variable used to
-            # upload the files to Google Drive the
-            # file stays open in memory and causes a
-            # memory leak, therefore preventing its
-            # deletion
-            f = None
-        '''
     except Exception as e:
         put_text("Error: "+str(e))
+
+#upload_archive('codewiz_123_archive.zip')
