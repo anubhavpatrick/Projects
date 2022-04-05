@@ -66,12 +66,12 @@ def main_GUI():
             #create_certificate_archive.create_archive(event_name_formatted, event_name_formatted+'_archive')
         put_markdown("- Certificates Successfully Generated")
 
-        #ensuring the session is not closed
-        session.hold()
-
         # read the certificate archive content and give option to download it
         content = open(archive_name, 'rb').read() 
         put_file(archive_name, content, 'Download Certificate Archive')
+
+        #ensuring the session is not closed
+        session.hold()
     
     except Exception as e:
         put_markdown("## !!!Error in generating certificates")
