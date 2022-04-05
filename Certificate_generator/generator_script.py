@@ -150,9 +150,15 @@ def generate_certificate(result_file, template_path, session, event_name:str):
         certi_path = output_path + section + '_' + str(roll_num) + '_' + certi_name
 
         # Save the certificate
-        cv.imwrite(certi_path+'.png', img)
+        #to generate high quality image
+        #cv.imwrite(certi_path+'.png', img)
+        #to generate low quality image
+        cv.imwrite(certi_path+'.jpg', img, [int(cv.IMWRITE_JPEG_QUALITY), 90])
 
-        image_1 = Image.open(certi_path + '.png')
+        #if image format is .png
+        #image_1 = Image.open(certi_path + '.png')
+        #if image format is .jpg
+        image_1 = Image.open(certi_path + '.jpg')
         im_1 = image_1.convert('RGB')
         im_1.save(certi_path +'.pdf')
 
