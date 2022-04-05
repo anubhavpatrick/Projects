@@ -67,14 +67,10 @@ def generate_certificate(result_file, template_path, session, event_name:str):
         try:
             get_name = sheet.cell(row = i ,column = 4)
             certi_name = get_name.value.title()
-            if len(certi_name) > 26:
-                certi_name = helpers.abbreviated_name(certi_name)
 
             #Abbreviate name if |name| > 26
-            for c in certi_name:
-                if c == ' ':
-                    certi_name = certi_name.replace(' ', '_')
-                    break
+            if len(certi_name) > 26:
+                certi_name = helpers.abbreviated_name(certi_name)
 
             get_section = sheet.cell(row = i ,column = 2)
             section = get_section.value.lower()

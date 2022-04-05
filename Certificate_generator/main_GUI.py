@@ -27,7 +27,7 @@ def main_GUI():
 
     try:
         #call the necessary functions based on user input
-        put_markdown("# Thank you for using the Certificate Generator")
+        put_markdown("# Thank you for using the Certificate Generator v2.0")
 
         put_markdown("### *Made with ❤️ by [Anubhav Patrick](https://www.linkedin.com/in/anubhavpatrick/)* ")
 
