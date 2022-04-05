@@ -6,7 +6,10 @@ Reference - https://pywebio.readthedocs.io/en/latest/
 
 from pywebio.input import input, radio,input_group,file_upload
 from pywebio.output import put_text, put_file, put_markdown
+#web socket server
 from pywebio import start_server
+#http server
+#from pywebio.platform.tornado_http import start_server
 import generator_script
 import create_certificate_archive
 import upload_certificate_archive
@@ -15,7 +18,7 @@ import os
 def main_GUI():
     '''Create GUI for the user to input parameters for certificate generation and call the supporting functions'''
 
-    put_markdown("# Welcome to the Certificate Generator")
+    put_markdown("# Welcome to the Certificate Generator v2.0")
     put_markdown("### *Made with ❤️ by [Anubhav Patrick](https://www.linkedin.com/in/anubhavpatrick/)*")
     info = input_group("Give Details For Certificate Generation",[
     input("Give name of the event", placeholder= "CODEWIZ 1.0",name = "event_name", value="CODEWIZ 1.0"),
@@ -73,4 +76,4 @@ def main_GUI():
 if __name__ == '__main__':
 
     #main_GUI()
-    start_server(main_GUI, host='',remote_access=True, reconnect_timeout=1000, max_payload_size='1000M')
+    start_server(main_GUI, host='', port= 55555,remote_access=True, reconnect_timeout=1000, max_payload_size='1000M', websocket_ping_interval=10)
