@@ -15,6 +15,8 @@ import os
 def main_GUI():
     '''Create GUI for the user to input parameters for certificate generation and call the supporting functions'''
 
+    put_markdown("# Welcome to the Certificate Generator")
+    put_markdown("## Made with ❤️ by [Anubhav Patrick](https://www.linkedin.com/in/anubhavpatrick/)")
     info = input_group("Give Details For Certificate Generation",[
     input("Give name of the event", placeholder= "CODEWIZ 1.0",name = "event_name", value="CODEWIZ 1.0"),
     input("Give name of the session", placeholder= "2021-22", name = "session",value="2021-22"),
