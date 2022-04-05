@@ -10,6 +10,7 @@ from pywebio.output import put_text, put_file, put_markdown
 from pywebio import start_server
 #http server
 #from pywebio.platform.tornado_http import start_server
+from pywebio import session
 import generator_script
 import create_certificate_archive
 import upload_certificate_archive
@@ -64,6 +65,10 @@ def main_GUI():
             pass
             #create_certificate_archive.create_archive(event_name_formatted, event_name_formatted+'_archive')
         put_markdown("- Certificates Successfully Generated")
+
+        #ensuring the session is not closed
+        session.hold()
+
         # read the certificate archive content and give option to download it
         content = open(archive_name, 'rb').read() 
         put_file(archive_name, content, 'Download Certificate Archive')
