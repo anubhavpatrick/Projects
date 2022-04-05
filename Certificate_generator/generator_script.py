@@ -73,6 +73,9 @@ def generate_certificate(result_file, template_path, session, event_name:str):
             event_name_formatted = event_name.strip().lower().replace(' ','_').replace('.','_')
             output_path = event_name_formatted+'/sec_' + section.lower() + '/'
 
+            #adding event name directory to .gitignore
+            open('.gitignore', 'a').write('\n'+event_name_formatted + '/\n')
+
             get_roll_num = sheet.cell(row = i ,column = 3)
             roll_num = int(get_roll_num.value)
         except:
@@ -144,4 +147,3 @@ def generate_certificate(result_file, template_path, session, event_name:str):
         im_1 = image_1.convert('RGB')
         im_1.save(certi_path +'.pdf')
 
-        open('.gitignore', 'a').write(certi_path + '/\n')
