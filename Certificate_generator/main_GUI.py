@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 '''
 GUI for the user to input parameters for certificate generation
 
