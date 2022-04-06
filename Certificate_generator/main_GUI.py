@@ -33,7 +33,7 @@ def main_GUI():
 
     try:
         #call the necessary functions based on user input
-        put_markdown("- Creating Certificates...")
+        put_markdown("- Generating Certificates...")
         
         #saving the result file in the project directory
         if info["result_file"] is None:
@@ -59,12 +59,13 @@ def main_GUI():
         #Archiving the certificate files
         archive_name = event_name_formatted+'_archive.zip'
         create_certificate_archive.create_archive(event_name_formatted, event_name_formatted+'_archive')
+        put_markdown("- Certificates Successfully Generated")
+
         if info['upload_require'] == "Yes":
             upload_certificate_archive.upload_archive(archive_name)
         elif info['email_require'] == "Yes":
             pass
             #create_certificate_archive.create_archive(event_name_formatted, event_name_formatted+'_archive')
-        put_markdown("- Certificates Successfully Generated")
 
         # read the certificate archive content and give option to download it
         content = open(archive_name, 'rb').read() 
@@ -81,4 +82,4 @@ def main_GUI():
 if __name__ == '__main__':
 
     #main_GUI()
-    start_server(main_GUI, host='',remote_access=True, reconnect_timeout=1000, max_payload_size='1000M', websocket_ping_interval=10)#, websocket_ping_timeout=5000)
+    start_server(main_GUI, host='',remote_access=True, reconnect_timeout=1000, max_payload_size='1000M', websocket_ping_interval=50)#, websocket_ping_timeout=5000)

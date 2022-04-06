@@ -8,6 +8,7 @@ from pydrive.drive import GoogleDrive
 from pydrive.auth import GoogleAuth
 from pywebio.output import put_markdown
 import pathlib
+import config
 
 # For using listdir()
 import os
@@ -20,7 +21,7 @@ def upload_archive(archive_name):
         # part of the code
         gauth = GoogleAuth()
 
-        put_markdown("- Authenticating...")
+        put_markdown("- Authenticating For Google Drive Access...")
 
         # Creates local webserver and auto
         # handles authentication.
@@ -36,6 +37,11 @@ def upload_archive(archive_name):
         f = drive.CreateFile({'title': archive_name})
         f.SetContentFile(os.path.join(current_dir, archive_name))
         f.Upload()
+
+        put_markdown(f'''
+        - Certiticate Archive Successfully Uploaded to Google Drive ...
+            - Drive Account - **{config.DEFAULT_GOOGLE_DRIVE_ACCOUNT_NAME}**
+            - File name: **{archive_name}** ''')
 
     except Exception as e:
         put_markdown("## !!!Error: "+str(e))
