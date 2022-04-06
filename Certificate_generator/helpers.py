@@ -1,4 +1,5 @@
 '''A module containing helper functions for the Certificate Generator'''
+import openpyxl
 
 #Reference -https://www.geeksforgeeks.org/python-print-initials-name-last-name-full/
 def abbreviated_name(s):
@@ -21,4 +22,10 @@ def abbreviated_name(s):
     new += l[-1].title()
       
     return new 
- 
+
+def number_of_certificates(result_file_name):
+    # loading the details.xlsx workbook
+    # and grabbing the active sheet
+    obj = openpyxl.load_workbook(result_file_name)
+    sheet = obj.active 
+    return sheet.max_row-1

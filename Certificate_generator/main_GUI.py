@@ -14,7 +14,11 @@ from pywebio import session
 import generator_script
 import create_certificate_archive
 import upload_certificate_archive
+import certificate_generated_log
+import helpers
+import time #for logging
 import os
+import config
 
 def main_GUI():
     '''Create GUI for the user to input parameters for certificate generation and call the supporting functions'''
@@ -22,8 +26,8 @@ def main_GUI():
     put_markdown("# Welcome to the Certificate Generator v2.0")
     put_markdown("### *Made with ❤️ by [Anubhav Patrick](https://www.linkedin.com/in/anubhavpatrick/)*")
     info = input_group("Give Details For Certificate Generation",[
-    input("Give name of the event", placeholder= "CODEWIZ 1.0",name = "event_name", value="CODEWIZ 1.0"),
-    input("Give name of the session", placeholder= "2021-22", name = "session",value="2021-22"),
+    input("Give name of the event", placeholder= config.DEFAULT_EVENT_NAME,name = "event_name", value=config.DEFAULT_EVENT_NAME),
+    input("Give name of the session", placeholder= config.DEFAULT_SESSION, name = "session",value=config.DEFAULT_SESSION),
     file_upload(label="Upload (.png) template", accept = ".png", placeholder= "If not selected, a default template will be selected from the project directory", name = "template_file"),
     file_upload(label="Upload (.xlsx) result file in SNo, Section Name, Roll No, Email, Score format", accept = ".xlsx", placeholder= "By default, the results.xlsx will be selected from the project directory", name = "result_file"),
     radio("Do you want to upload the zip archive to Google Drive", options=["Yes", "No"], name = "upload_require", value = "No"),
@@ -38,7 +42,7 @@ def main_GUI():
         #saving the result file in the project directory
         if info["result_file"] is None:
             #if the user does not upload the result file, then the default result file will be used
-            result_file_name = "results.xlsx"
+            result_file_name = config.DEFAULT_RESULT_FILE
         else:
             os.makedirs("assets/", exist_ok=True)
             open('assets/results.xlsx', 'wb').write(info["result_file"]['content'])
@@ -47,7 +51,7 @@ def main_GUI():
         #saving the template file in the project directory
         if info["template_file"] is None:
             #if the user does not upload the template file, then the default result file will be used
-            template_file_name = "certificate.png"
+            template_file_name = config.DEFAULT_TEMPLATE_FILE
         else:
             os.makedirs("assets/", exist_ok=True)
             open('assets/certificate.png', 'wb').write(info["template_file"]['content'])
@@ -70,6 +74,16 @@ def main_GUI():
         # read the certificate archive content and give option to download it
         content = open(archive_name, 'rb').read() 
         put_file(archive_name, content, 'Download Certificate Archive')
+
+        #adding details of the certificates generated to the log file
+        print(certificate_generated_log.certificate_details_logger(f"Time: {time.ctime()}\n"+
+        f"Event Name: {event_name_formatted}\n"+
+        f"Session: {info['session']}\n"+
+        f"Template File: {template_file_name}\n"+
+        f"Result File: {result_file_name}\n"+
+        f"Google Drive Upload Required: {info['upload_require']}\n"+
+        f"Email Sending Required: {info['email_require']}\n"+
+        f"Number of Certificates Generated: {helpers.number_of_certificates(result_file_name)}\n\n"))
 
         #ensuring the session is not closed
         session.hold()

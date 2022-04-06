@@ -1,5 +1,5 @@
 *.json
 *.pdf
 *.zip
-codewiz_1_0/
-test_123/
+*.log
+*.DS_Store
