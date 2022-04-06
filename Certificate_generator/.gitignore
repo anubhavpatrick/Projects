@@ -3,4 +3,5 @@
 *.zip
 *.log
 *.DS_Store
-codewiz_test/
+__pycache__/
+*.pyc

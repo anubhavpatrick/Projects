@@ -15,7 +15,6 @@ def certificate_details_logger(log_str:str):
     #Alternate option - Use simple file handling
     with open('certificate_generated.log', 'a') as f:
         f.write(log_str)
-        return 'Success'
 
 
 

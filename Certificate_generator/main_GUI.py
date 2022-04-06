@@ -78,14 +78,14 @@ def main_GUI():
         put_file(archive_name, content, 'Download Certificate Archive')
 
         #adding details of the certificates generated to the log file
-        print(certificate_generated_log.certificate_details_logger(f"Time: {time.ctime()}\n"+
+        certificate_generated_log.certificate_details_logger(f"Time: {time.ctime()}\n"+
         f"Event Name: {event_name_formatted}\n"+
         f"Session: {info['session']}\n"+
         f"Template File: {template_file_name}\n"+
         f"Result File: {result_file_name}\n"+
         f"Google Drive Upload Required: {info['upload_require']}\n"+
         f"Email Sending Required: {info['email_require']}\n"+
-        f"Number of Certificates Generated: {helpers.number_of_certificates(result_file_name)}\n\n"))
+        f"Number of Certificates Generated: {helpers.number_of_certificates(result_file_name)}\n\n")
 
         #ensuring the session is not closed
         session.hold()
