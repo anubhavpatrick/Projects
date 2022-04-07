@@ -29,7 +29,7 @@ def main_GUI():
 
     #Password authentication
     pwd = input('Enter app password: ', type=PASSWORD)
-    if authentication.simple_matcher(pwd):
+    if authentication.verify_password(pwd):
         info = input_group("Give Details For Certificate Generation",[
         input("Give name of the event", placeholder= config.DEFAULT_EVENT_NAME,name = "event_name", value=config.DEFAULT_EVENT_NAME),
         input("Give name of the session", placeholder= config.DEFAULT_SESSION, name = "session",value=config.DEFAULT_SESSION),
