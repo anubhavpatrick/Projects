@@ -58,12 +58,10 @@ def generate_certificate(result_file, template_path, session, event_name:str):
     #store dir listing for creating new directories (if necessary)
     dir_list = os.listdir()
 
-    # excel sheet
+    # iterate over rows in excel sheet
     for i in range(2, sheet.max_row+1):
     
-        # grabs the row=i and column=1 cell
-        # that contains the name value of that
-        # cell is stored in the variable certi_name
+        # grab values from excel sheet
         try:
             get_name = sheet.cell(row = i ,column = 4)
             certi_name = get_name.value.title()
@@ -146,7 +144,7 @@ def generate_certificate(result_file, template_path, session, event_name:str):
 
         # Output path along with the name of the
         # certificate generated
-        certi_name = certi_name.lower().replace(' ','_')
+        certi_name = certi_name.lower().replace(' ','_').replace('.','_')
         certi_path = output_path + section + '_' + str(roll_num) + '_' + certi_name
 
         # Save the certificate

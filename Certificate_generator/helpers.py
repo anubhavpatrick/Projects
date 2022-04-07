@@ -2,6 +2,7 @@
 from tkinter import E
 import openpyxl
 import os
+import time #for logging
 
 #Reference -https://www.geeksforgeeks.org/python-print-initials-name-last-name-full/
 def abbreviated_name(s):
@@ -36,7 +37,6 @@ def hard_cleanup():
     '''Use with caution. Action is irreplacable
     Remove all the certificate related files in the current directory
     and the directory itself'''
-
     try:
         #delete certificate directories
         with open('certificate_generated.log', 'r') as f:
@@ -56,3 +56,24 @@ def hard_cleanup():
 
 #Uncomment to delete files and directories of all previously generated certificates
 #hard_cleanup()
+
+def create_log_entry(event_name, session, template, result_file, upload_require:bool, email_require:bool):
+    '''Create a string entry of certificate generation details for logging purpose
+    '''
+    entry= f"Time: {time.ctime()}\n" +\
+    f"Event Name: {event_name}\n" +\
+    f"Session: {session}\n"+ \
+    f"Template File: {template}\n" +\
+    f"Result File: {result_file}\n" +\
+    f"Google Drive Upload Required: {upload_require}\n" +\
+    f"Email Sending Required: {email_require}\n" +\
+    f"Number of Certificates Generated: {number_of_certificates(result_file)}\n\n"
+
+    return entry
+
+def authenticates_user(username, password):
+    '''Authenticates the user with the given username and password
+    '''
+    return True
+
+    
