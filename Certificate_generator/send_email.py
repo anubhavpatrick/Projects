@@ -15,8 +15,10 @@ from googleapiclient.errors import HttpError
 from email.mime.text import MIMEText
 import mimetypes
 from email.mime.image import MIMEImage
+from email.mime.application import MIMEApplication
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
+from email import encoders
 import base64
 import openpyxl
 import helpers
@@ -136,10 +138,8 @@ def create_message_with_attachment(
     message.attach(msg)
 
     content_type, encoding = mimetypes.guess_type(file)
-
-    if content_type is None or encoding is not None:
-        content_type = 'application/octet-stream'
     main_type, sub_type = content_type.split('/', 1)
+
     if main_type == 'text':
         fp = open(file, 'rb')
         msg = MIMEText(fp.read(), _subtype=sub_type)
@@ -148,11 +148,21 @@ def create_message_with_attachment(
         fp = open(file, 'rb')
         msg = MIMEImage(fp.read(), _subtype=sub_type)
         fp.close()
+    elif main_type == 'application' and sub_type=='pdf' and encoding == None: #Reference - https://coderzcolumn.com/tutorials/python/mimetypes-guide-to-determine-mime-type-of-file
+        print("INSIDE PDF")
+        main_type = 'application'
+        sub_type = 'octet-stream'
+        fp = open(file, 'rb')
+        msg = MIMEBase(main_type, sub_type)
+        msg.set_payload(fp.read())
+        encoders.encode_base64(msg)
+        fp.close()
     else:
         fp = open(file, 'rb')
         msg = MIMEBase(main_type, sub_type)
         msg.set_payload(fp.read())
         fp.close()
+    print(main_type,sub_type,encoding)
     filename = os.path.basename(file)
     msg.add_header('Content-Disposition', 'attachment', filename=filename)
     message.attach(msg)

@@ -24,7 +24,7 @@ def main_GUI():
     '''Create GUI for the user to input parameters for certificate generation and call the supporting functions'''
 
     #Headers for the GUI
-    put_markdown("# Welcome to the Certificate Generator v3.0")
+    put_markdown("# Welcome to the Certificate Generator v3.1")
     put_markdown("### *Made with ❤️ by [Anubhav Patrick](https://www.linkedin.com/in/anubhavpatrick/)*")
 
     #Password authentication
