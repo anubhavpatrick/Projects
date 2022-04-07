@@ -71,9 +71,6 @@ def create_log_entry(event_name, session, template, result_file, upload_require:
 
     return entry
 
-def authenticates_user(username, password):
-    '''Authenticates the user with the given username and password
-    '''
-    return True
+#hard_cleanup()
 
     
