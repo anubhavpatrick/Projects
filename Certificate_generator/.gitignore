@@ -7,3 +7,5 @@
 __pycache__/
 *.pyc
 *.pyo
+certificate_generator_virtual_environment/
+
