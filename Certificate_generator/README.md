@@ -5,9 +5,11 @@ This project creates bulk e-certificates for students and uploads them to the Go
 In order to use this project, you need to have a Google account and a Google Drive account. 
 
 For installing the necessary packages, upgrade the pip3 package
+
 ```     pip install --upgrade pip```
 
 Execute the following commands:
+
 ```     pip install -r requirements.txt```
 
 Execute the following command to run it via CLI
