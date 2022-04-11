@@ -33,7 +33,7 @@ def main_GUI():
         info = input_group("Give Details For Certificate Generation",[
         input("Give name of the event", placeholder= config.DEFAULT_EVENT_NAME,name = "event_name", value=config.DEFAULT_EVENT_NAME),
         input("Give name of the session", placeholder= config.DEFAULT_SESSION, name = "session",value=config.DEFAULT_SESSION),
-        file_upload(label="Upload (.png) template", accept = ".png", placeholder= "If not selected, a default template will be selected from the project directory", name = "template_file"),
+        file_upload(label="Upload (.png) template", accept = "image/*", placeholder= "If not selected, a default template will be selected from the project directory", name = "template_file"),
         file_upload(label="Upload (.xlsx) result file in |SNo|Section Name|Roll No|Email|Score| format", accept = ".xlsx", placeholder= "By default, the results.xlsx will be selected from the project directory", name = "result_file"),
         radio(f"Upload the zip archive to Google Drive\n[Account: {config.DEFAULT_GOOGLE_DRIVE_ACCOUNT_NAME}]", options=["Yes", "No"], name = "upload_require", value = "No"),
         radio(f"Send the emails with attached certificate to the participants\n[Account: {config.DEFAULT_SENDER_EMAIL}]", options=["Yes", "No"], name = "email_require", value = "No")

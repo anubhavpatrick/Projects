@@ -16,15 +16,16 @@ def generate_certificate(result_file, template_path, session, event_name:str):
     session_padded = session.center(15, ' ')
 
     # Setting the font size and font
-    # colour
-    font_size = 3
-    font_color = (255, 255, 255)
+    # colour, y-coordinate of participant name
+    font_size = 4
+    #font_color = (0, 0, 0)
+    font_color = (132, 75, 174)
 
     # Coordinates on the certificate where
     # will be printing the name (set
     # according to your own template)
-    coordinate_y_adjustment = 15
-    coordinate_x_adjustment = 7
+    coordinate_y_adjustment = 220
+    coordinate_x_adjustment = 200
 
     #settings for event name to be put on the certificate
     text_x_event_name = 405
@@ -117,8 +118,8 @@ def generate_certificate(result_file, template_path, session, event_name:str):
                 (text_x, text_y),
                 font,
                 font_size,
-                font_color, 5)
-        
+                font_color, 6)
+        '''
         #displaying event name on the certificate
         cv.putText(img, event_name_padded,
                 (text_x_event_name, text_y_event_name),
@@ -141,7 +142,7 @@ def generate_certificate(result_file, template_path, session, event_name:str):
                 font_date,
                 font_size_date,
                 font_color, font_thickness_date)
-
+        '''
         # Output path along with the name of the
         # certificate generated
         certi_name = certi_name.lower().replace(' ','_').replace('.','_')

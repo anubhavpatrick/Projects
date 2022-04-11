@@ -197,7 +197,8 @@ def create_email_subject_body(event_name:str, participant_name, test_mode=False)
     else:
         body = ""
     body +=  f"Dear {participant_name},\n\n" +\
-            f"Congratulations! You have successfully completed the " + f"{event_name.strip()}" +" event. \n\nPlease find your attached certificate of competency.\n\n" +\
+            f"Congratulations! You have successfully completed the " + f"{event_name.strip()}" +" event. \n\nPlease find your attached e-certificate of competency.\n\n" +\
+            f"Also, kindly assemble today in E-513 at 3.30 pm for certificate distribution ceremony\n\n" +\
             f"Best Wishes,\n" +\
             f"Team CPP"
     return subject, body
