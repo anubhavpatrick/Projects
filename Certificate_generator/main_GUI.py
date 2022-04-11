@@ -8,8 +8,12 @@ Reference - https://pywebio.readthedocs.io/en/latest/
 
 from pywebio.input import input, radio,input_group,file_upload,PASSWORD
 from pywebio.output import put_text, put_file, put_markdown
-from pywebio import start_server
+
+from pywebio import start_server #for quick testing
+
+from pywebio.platform.flask import webio_view
 from pywebio import session
+from flask import Flask
 import generator_script
 import create_certificate_archive
 import upload_certificate_archive
@@ -19,6 +23,7 @@ import os
 import config
 import send_email
 import authentication
+
 
 def main_GUI():
     '''Create GUI for the user to input parameters for certificate generation and call the supporting functions'''
@@ -105,4 +110,10 @@ def main_GUI():
 if __name__ == '__main__':
 
     #main_GUI()
-    start_server(main_GUI, host='',remote_access=True, reconnect_timeout=1000, max_payload_size='1000M', websocket_ping_interval=50)#, websocket_ping_timeout=5000)
+    #for quick  testing
+    #start_server(main_GUI, host='',remote_access=True, reconnect_timeout=1000, max_payload_size='1000M', websocket_ping_interval=50)#, websocket_ping_timeout=5000)
+    
+    #app.add_url_rule('/', 'main_GUI', webio_view(main_GUI))
+    app = Flask(__name__)
+    app.add_url_rule('/', 'webio_view', webio_view(main_GUI), methods =['GET','POST', 'OPTIONS'])
+    app.run(host='0.0.0.0', port=5000, debug=False)
