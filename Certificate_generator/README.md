@@ -21,7 +21,7 @@ Execute the following command to run it via GUI
 ```     python3 main_GUI.py```
 
 
-Inorder to start host the webapp on the Internet, you will probably need to do port forwarding on your router. However, this may be a bit tricky. So a simpler solution can be to use a tunneling service like:
+Ino rder to host the webapp on the Internet, you will probably need to do port forwarding on your router. However, this may be a bit tricky. So a simpler solution can be to use a tunneling service like:
 
--   [ngrok](https://ngrok.com/) 
--   [localtunnel](https://ngrok.com/)
+-   [ngrok](https://ngrok.com/) - very good but may require paid subscription.
+-   [localtunnel](https://localtunnel.github.io/www/) - free but very basic.
