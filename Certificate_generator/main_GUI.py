@@ -25,11 +25,12 @@ import send_email
 import authentication
 
 
+
 def main_GUI():
-    '''Create GUI for the user to input parameters for certificate generation and call the supporting functions'''
+    '''Automated Certificate Generator'''
 
     #Headers for the GUI
-    put_markdown("# Welcome to the Certificate Generator v3.1")
+    put_markdown("# Welcome to the Certificate Generator v3.2")
     put_markdown("### *Made with ❤️ by [Anubhav Patrick](https://www.linkedin.com/in/anubhavpatrick/)*")
 
     #Password authentication
@@ -116,4 +117,4 @@ if __name__ == '__main__':
     #app.add_url_rule('/', 'main_GUI', webio_view(main_GUI))
     app = Flask(__name__)
     app.add_url_rule('/', 'webio_view', webio_view(main_GUI), methods =['GET','POST', 'OPTIONS'])
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    app.run(host='0.0.0.0')
