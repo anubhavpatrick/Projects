@@ -3,7 +3,7 @@ cachetools==4.2.4
 certifi==2021.10.8
 charset-normalizer==2.0.12
 click==8.0.4
-dataclasses==0.8
+dataclasses==0.6
 et-xmlfile==1.1.0
 Flask==2.0.3
 google-api-core==2.7.1
@@ -25,7 +25,6 @@ opencv-python==4.5.5.64
 openpyxl==3.0.9
 passlib==1.7.4
 Pillow==8.4.0
-pkg_resources==0.0.0
 protobuf==3.19.4
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
@@ -44,7 +43,7 @@ six==1.16.0
 stdiomask==0.0.6
 toml==0.10.2
 tornado==6.1
-typing_extensions==4.1.1
+typing-extensions==4.1.1
 ua-parser==0.10.0
 uritemplate==4.1.1
 urllib3==1.26.9
