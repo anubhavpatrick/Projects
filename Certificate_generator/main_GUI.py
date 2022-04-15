@@ -35,7 +35,7 @@ def main_GUI():
 
     #Password authentication
     pwd = input('Enter app password: ', type=PASSWORD)
-    if authentication.verify_password(pwd):
+    if authentication.verify_password(pwd) =='success':
         info = input_group("Give Details For Certificate Generation",[
         input("Give name of the event", placeholder= config.DEFAULT_EVENT_NAME,name = "event_name", value=config.DEFAULT_EVENT_NAME),
         input("Give name of the session", placeholder= config.DEFAULT_SESSION, name = "session",value=config.DEFAULT_SESSION),
@@ -102,10 +102,13 @@ def main_GUI():
         
         except Exception as e:
             put_markdown("## !!!Error in generating certificates")
-            put_text(e)
+            put_text(str(e))
     
-    else:
+    elif authentication.verify_password(pwd) == 'failure':
         put_markdown("## !!!Wrong Password")
+    elif authentication.verify_password(pwd) == 'error':
+        put_markdown("### !!!Error in Authentication Mechanism of Application\n \
+                    Please contact the developer")  
 
 
 if __name__ == '__main__':

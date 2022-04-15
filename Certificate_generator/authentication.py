@@ -14,9 +14,15 @@ def store_password(pwd, file='password.p'):
 
 def verify_password(pwd, file='password.p'):
     '''A function to verify the password'''
-    with open(file, 'rb') as f:
-        pwd_hash = pickle.load(f)
-    return pbkdf2_sha256.verify(pwd, pwd_hash)
+    try:
+        with open(file, 'rb') as f:
+            pwd_hash = pickle.load(f)
+            if pbkdf2_sha256.verify(pwd, pwd_hash):
+                return 'success'
+            else:
+                return 'failure'
+    except FileNotFoundError as e:
+        return 'error'
 
 def simple_matcher(pwd):
     '''A function to match the password'''
