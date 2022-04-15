@@ -1,5 +1,4 @@
 '''A module containing helper functions for the Certificate Generator'''
-from tkinter import E
 import openpyxl
 import os
 import time #for logging
